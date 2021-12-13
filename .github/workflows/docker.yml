@@ -31,7 +31,7 @@ jobs:
           echo "image_tag=" >> $GITHUB_ENV
 
       - name: Set build target (full)
-        if: matrix.flavor == 'full'
+        if: matrix.flavor == ':full'
         run: |
           echo "build_file=Dockerfile.full" >> $GITHUB_ENV
           echo "image_tag=full" >> $GITHUB_ENV
@@ -42,6 +42,6 @@ jobs:
           context: ./
           file: ./${{ env.build_file }}
           tags: |
-            ${{ secrets.DOCKERHUB_USER }}/latexmk:${{ env.image_tag }}
+            ${{ secrets.DOCKERHUB_USER }}/latexmk${{ env.image_tag }}
           platforms: linux/amd64
           push: true
