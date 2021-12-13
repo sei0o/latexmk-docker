@@ -28,13 +28,13 @@ jobs:
         if: matrix.flavor == 'nomal'
         run: |
           echo "build_file=Dockerfile" >> $GITHUB_ENV
-          echo "image_tag= >> $GITHUB_ENV
+          echo "image_tag=" >> $GITHUB_ENV
 
       - name: Set build target (full)
         if: matrix.flavor == 'full'
         run: |
           echo "build_file=Dockerfile.full" >> $GITHUB_ENV
-          echo "image_tag=full >> $GITHUB_ENV
+          echo "image_tag=full" >> $GITHUB_ENV
 
       - name: Build and push
         uses: docker/build-push-action@v2
