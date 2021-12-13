@@ -13,18 +13,22 @@ ENV PATH="/usr/local/texlive/${YEAR}/bin/x86_64-linux:$PATH"
 RUN apt-get update \
     && apt-get -y install \
         build-essential \
-        wget \
+        ghostscript \
         git \
         gosu \
         libfontconfig1-dev \
         libfreetype6-dev \
-        ghostscript \
+        locales-all \
         perl \
-        python3-pip \
         python3-dev \
+        python3-pip \
+        wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && pip3 install pygments \
+    && cpan YAML::Tiny \
+    && cpan File::HomeDir \
+    && cpan Unicode::GCString \
     && mkdir /tmp/install-tl-unx \
     && wget -O - ftp://tug.org/historic/systems/texlive/${YEAR}/install-tl-unx.tar.gz \
         | tar -xzv -C /tmp/install-tl-unx --strip-components=1 \
@@ -45,8 +49,10 @@ RUN apt-get update \
         collection-mathscience \
         collection-plaingeneric \
         collection-xetex \
-        latexmk \
         latexdiff \
+        latexindent \
+        latexmk \
+        pdfcrop \
     && mkdir /tmp/latexmk
 
 COPY .latexmkrc /tmp/latexmk/
