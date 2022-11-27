@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        flavor: [nomal, full]
+        flavor: [normal, full]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -24,8 +24,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Set build target (nomal)
-        if: matrix.flavor == 'nomal'
+      - name: Set build target (normal)
+        if: matrix.flavor == 'normal'
         run: |
           echo "build_file=Dockerfile" >> $GITHUB_ENV
           echo "image_tag=" >> $GITHUB_ENV
